@@ -36,10 +36,11 @@ description: 'Nature Landscape',   },   {     preview:      
 'https://cdn.pixabay.com/photo/2019/05/17/04/35/lighthouse-4208843_1280.jpg',  
         description: 'Lighthouse Coast Sea',
     },];
+import SimpleLightbox from "simplelightbox";
+import "simplelightbox/dist/simple-lightbox.min.css";
 
 const galleryList =document.querySelector('.gallery');
 
-let modal = null;
 
 function imageTemplate(image) {
     return `
@@ -53,6 +54,7 @@ function imageTemplate(image) {
   </a>
 </li>
 ` };
+
 function imagesTemplate(arr) {
     return arr.map(imageTemplate).join('');
 };
@@ -63,10 +65,12 @@ galleryList.innerHTML = markup;
 
 
 //?==================================================================
-// const lightbox = new SimpleLightbox('.gallery a', { 
-//     captionDelay: 250,
 
+const lightbox = new SimpleLightbox('.gallery a', {
+   captions: true,
+    captionsData: 'alt', 
+    captionDelay: 250  
+});
 
-// });
+show.lightbox()
 
-// show.lightbox()
