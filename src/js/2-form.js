@@ -1,6 +1,9 @@
 const formEl = document.querySelector('.feedback-form');
 const SAVE_KEY = "feedback-form-state";
-const formData = { email: "", message: "" };
+// const formData = { email: "", message: "" };
+
+let formData = JSON.parse(localStorage.getItem(SAVE_KEY)) || { email: "", message: "" } ;
+
 
 //!==================================================================
 formEl.addEventListener('submit', e => {
@@ -11,15 +14,19 @@ formEl.addEventListener('submit', e => {
     if (!email|| !message) {
         return alert('email or message is empty');
     }
-        
+    const userData = {
+           email, message,
+    } 
+    console.log(userData);
     // formData.elements.email= '';
     // formData.elements.message = '';
     
      e.target.elements.email.value= '';
         e.target.elements.message.value= '';
 
-    localStorage.clear();
-        e.target.reset();
+    localStorage.removeItem(SAVE_KEY);
+    e.target.reset();
+    formData = {};
 })
 
 
@@ -58,6 +65,9 @@ function init() {
     formEl.elements.email.value = data.email || '';
     formEl.elements.message.value = data.message || '';
 
+    // formData = {
+    //     email, message
+    // }
 }
 init()
 
