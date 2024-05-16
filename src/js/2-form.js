@@ -1,6 +1,5 @@
 const formEl = document.querySelector('.feedback-form');
 const SAVE_KEY = "feedback-form-state";
-// const formData = { email: "", message: "" };
 
 let formData = JSON.parse(localStorage.getItem(SAVE_KEY)) || { email: "", message: "" } ;
 
