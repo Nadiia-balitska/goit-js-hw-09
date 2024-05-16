@@ -3,17 +3,6 @@ const SAVE_KEY = "feedback-form-state";
 const formData = { email: "", message: "" };
 
 //!==================================================================
-
-formEl.addEventListener('input', e => {
-    const value = e.target.value.trim();
-    console.log(value);
-    formData[e.target.name] = value;
-    saveInStorage(SAVE_KEY, formData);
-
-
-});
-
-
 formEl.addEventListener('submit', e => {
     e.preventDefault();
     const email = e.currentTarget.elements.email.value.trim();
@@ -23,9 +12,26 @@ formEl.addEventListener('submit', e => {
         return alert('email or message is empty');
     }
         
-        formData[e.target.name] = '';
-        formEl.reset();
+    // formData.elements.email= '';
+    // formData.elements.message = '';
+    
+     e.target.elements.email.value= '';
+        e.target.elements.message.value= '';
+
+    localStorage.clear();
+        e.target.reset();
 })
+
+
+formEl.addEventListener('input', e => {
+    const value = e.target.value.trim();
+    formData[e.target.name] = value;
+    saveInStorage(SAVE_KEY, formData);
+
+});
+
+
+
 
 //!==================================================================
 function saveInStorage(key, value) {
